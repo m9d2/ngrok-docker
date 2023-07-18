@@ -28,3 +28,55 @@ export NGROK_DOMAIN="xxx.com"
 ```shell
 -domain="xxx.com"
 ```
+
+### 下载客户端
+
+将客户端从容器下载到本地
+```shell
+docker cp ngrok:/ngrok/bin ~/ngrok/
+```
+
+### 如何启动客户端
+#### windows
+
+配置ngrok.cfg
+
+```
+server_addr: "xxx.com:4443"
+trust_host_root_certs: false
+```
+
+启动客户端
+
+http
+```shell
+ngrok.exe -subdomain=ngrok -config=ngrok.cfg 80
+```
+
+tcp
+```shell
+ngrok.exe -proto=tcp -config=ngrok.cfg start ssh
+
+```
+
+#### mac
+
+配置ngrok.yml
+
+```
+server_addr: "xxx.com:4443"
+trust_host_root_certs: false
+```
+
+启动客户端
+
+http
+```shell
+./ngrok -config ngrok.yml -subdomain=ngrok 4080
+```
+
+tcp
+```shell
+./ngrok -config ngrok.yml -subdomain=ngrok start ssh
+
+```
